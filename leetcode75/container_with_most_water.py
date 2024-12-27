@@ -23,7 +23,13 @@ class Solution:
         Returns:
             int: maxArea
         """
-        return 
+        max_area : int = 0
+        for i in range(len(height)):
+            for j in range(len(height)):
+                if not i == j:
+                    area = abs(i - j) * min(height[i], height[j])
+                    max_area = max_area if max_area > area else area
+        return max_area
 
 
 if __name__ == "__main__":
