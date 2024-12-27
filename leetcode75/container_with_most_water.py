@@ -30,10 +30,32 @@ class Solution:
                     area = abs(i - j) * min(height[i], height[j])
                     max_area = max_area if max_area > area else area
         return max_area
+            
+    def maxArea(self, height: List[int]) -> int:
+        """_summary_
+
+        Args:
+            height (List[int]): _description_
+
+        Returns:
+            int: maxArea
+        """
+        max_area: int = 0 
+        left = 0
+        right = len(height) - 1
+        while not left == right:
+            current_height = min(height[left], height[right])
+            current_area = abs(left - right) * current_height
+            max_area = max_area if max_area > current_area else current_area
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_area
 
 
 if __name__ == "__main__":
     solution = Solution()
     height = [1,8,6,2,5,4,8,3,7]
     expected_result = 49
-    print(solution.maxArea_bruteforce(height) == expected_result)
+    print(solution.maxArea(height) == expected_result)
