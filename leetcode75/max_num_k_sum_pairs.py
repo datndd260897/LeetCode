@@ -30,7 +30,20 @@ class Solution:
         
     def maxOperations(self, nums: List[int], k: int) -> int:
         count: int = 0
+        nums_map: Dict[int, int] = {}
+        for value in nums:
+            if nums_map.get(value):
+                nums_map[value] += 1
+            else:
+                nums_map[value] = 1
 
+        for value in nums:
+            value2 = k - value
+            if nums_map.get(value2):
+                nums_map[value2] -= 1
+                nums_map[value] -= 1
+                if nums_map[value] >= 0 and nums_map[value2] >= 0:
+                    count += 1
         return count
 
 
