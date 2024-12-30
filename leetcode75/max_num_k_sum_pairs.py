@@ -30,10 +30,13 @@ class Solution:
         
     def maxOperations(self, nums: List[int], k: int) -> int:
         count: int = 0
+
         return count
 
 
 if __name__ == "__main__":
     solution = Solution()
+    nums, k = [3,1,3,4,3], 6
+    print(solution.maxOperations(nums, k))
 
     
