@@ -25,12 +25,19 @@ class Solution:
         pass
 
     def maxVowels(self, s: str, k: int) -> int:
-        max_vowels = 0
-
+        current_vowels = 0
+        vowels = ['a', 'i', 'u', 'e', 'o']
+        for index in range(k):
+            current_vowels += 1 if s[index] in vowels else 0
+        max_vowels = current_vowels
+        for j_index in range(k, len(s)):
+            current_vowels += 1 if s[j_index] in vowels else 0
+            current_vowels -= 1 if s[j_index - k] in vowels else 0
+            max_vowels = current_vowels if current_vowels > max_vowels else max_vowels
         return max_vowels
 
 if __name__ == "__main__":
     solution = Solution()
-    s, k = "", 3
+    s, k = "abciiidef", 3
     print(solution.maxVowels(s, k))
     pass    
